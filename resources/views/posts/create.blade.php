@@ -16,11 +16,6 @@
         </ul>
     </div>
     @endif
-    @if($message = Session::has('message'))
-        <div class="alert alert-success">
-            {{ Session::get('message') }}
-        </div>
-    @endif
 <form method="POST" action="{{route('post.store')}}">
     @csrf
     <div class="form-group">

@@ -49,7 +49,7 @@
             <a href="{{ route('post.edit',$post->id)}}" class="btn btn-primary mr-2">
                 <i class="fa fa-pencil" ></i>
             </a>
-            <form method="POST" action="{{ route('post.destroy',$post->slug)}}">
+            <form method="POST" action="{{ route('post.destroy', $post->id)}}">
               @csrf
               @method('DELETE')
                  <button type="submit" class="btn btn-danger">

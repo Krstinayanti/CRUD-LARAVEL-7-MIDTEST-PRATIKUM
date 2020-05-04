@@ -55,9 +55,7 @@ class PostController extends Controller
         ]);
 
         if($post->save()) {
-            return redirect()->to(route('post.create'))->with([
-                'message' => 'Postingan Berhasil Dibuat'
-            ]);
+            return redirect('/post')->with('success','Berhasil di buat!');
         } else {
             return abort(404);
         }
