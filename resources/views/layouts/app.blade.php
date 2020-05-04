@@ -11,8 +11,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>@yield('title')</title>
+    <style>
+        table, th, td {
+            background-color: white;
+        }
+    </style>
   </head>
-  <body>
+  <body style="background-color: #F0F8FF;">
             <nav class="navbar navbar-expand-lg navbar-dark bg-info mb-4">
                 <div class="container">
             <a class="navbar-brand" href="#">Blogku</a>
@@ -40,6 +45,12 @@
             
                 <script src="{{ asset('js/app.js')}}"></script>
 
-   
+            <script>
+                $('.title-input').on('keyup', function() {
+                    var title = $(this).val();
+                    var slug = title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+                    $('.slug-input').val(slug);
+                })
+            </script>
   </body>
 </html>

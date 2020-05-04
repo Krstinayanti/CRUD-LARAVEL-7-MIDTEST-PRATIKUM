@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -48,6 +49,9 @@ class PostController extends Controller
         $post =new Post([
             'title' =>$request->get('title'),
             'description' =>$request->get('description'),
+            'Kategori' => $request->get('kategori'),
+            'slug' => $request->get('slug'),
+            'status' => ($request->get('status') == "on") ? 'publish': 'draft',
         ]);
 
         if($post->save()) {
@@ -67,7 +71,7 @@ class PostController extends Controller
      */
     public function show($id)
         {
-            $post = Post::find($id);
+            $post = DB::table('posts')->where('id', '=', $id)->orWhere('slug', '=', $id)->first();
             return view('posts.show',compact('post'));
         }
 
@@ -99,6 +103,9 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title =$request->get('title');
         $post->description =$request->get('description');
+        $post->Kategori = $request->get('kategori');
+        $post->slug = $request->get('slug');
+        $post->status = ($request->get('status') == "on") ? 'publish': 'draft';
         $post->save();
         return redirect('/post')->with('success','Berhasil di edit!');
 
